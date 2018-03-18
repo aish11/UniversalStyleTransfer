@@ -21,7 +21,6 @@ Style Image
 Result
 ![output images](https://github.com/aish11/UniversalStyleTransfer/tree/master/outputs/image.PNG)
 
-[[https://github.com/aish11/UniversalStyleTransfer/tree/master/outputs/image.PNG|alt=octocat]]
 
 
 
