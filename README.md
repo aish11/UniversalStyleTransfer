@@ -1,7 +1,7 @@
 # UniversalStyleTransfer
 Universal Style Transfer via Feature Transforms using TensorFlow
 
-The paper published by Li et al named “Universal Style Transfer via Feature Transforms” (https://arxiv.org/pdf/1705.08086.pdf) is implemented using TensorFlow. 
+We have implemented the paper published by Li et al named “Universal Style Transfer via Feature Transforms” (https://arxiv.org/pdf/1705.08086.pdf) using TensorFlow. 
 
 The entire project is based on an auto-encoder trained model that allows rebuilding the output image from intermediate layers of already trained VGG19 image classification net. 
 
@@ -28,13 +28,9 @@ Result
 
 * Python 3.5
 * TensorFlow 1.5.0
-* Palmetto Cluster 
+* Palmetto Cluster ()
 * Anaconda3 5.0.1
-* Keras
-
-
-# Libraries Used:
-
+* Keras 2.1.5
 * scikit-image
 * ffmpeg
 * numpy
@@ -43,12 +39,17 @@ Result
 
 # Running the model:
 
-At first, we need to download the pre-trained models, that is VGG19 model given by download_vgg.sh from https://www.dropbox.com/s/ssg39coiih5hjzz/models.zip?dl=1 and the checkpoints for the decoders given by download_models.sh from https://www.dropbox.com/s/kh8izr3fkvhitfn/vgg_normalised.t7?dl=1
+1. Setting up Tensorflow Kernel for Anaconda on Palmetto and logging in with 
+Number of chunks: 1 (Tensorflow uses 1 chunk)
+CPU cores: 24
+Memory: 62gb
+Queue: workq
 
+2. We then download the pre-trained models, that is VGG19 model from https://www.dropbox.com/s/ssg39coiih5hjzz/models.zip?dl=1 and the checkpoints for the decoders from https://www.dropbox.com/s/kh8izr3fkvhitfn/vgg_normalised.t7?dl=1 and extract it.
 
 3. Input the desired content images and the style images on which you wish to run the model.
 
-4.Run the stylize.py using the following command:
+4. Run the stylize.py using the following command:
  
 python stylize.py --checkpoints models/relu5_1 models/relu4_1 models/relu3_1 models/relu2_1 models/relu1_1 --relu-targets relu5_1 relu4_1 relu3_1 relu2_1 relu1_1 --content-path <CONTENT IMAGE PATH>
 --style-size 512 --alpha 0.8 --style-path <STYLE IMAGE PATH> --out-path <OUTPUT IMAGE PATH> 
@@ -68,31 +69,31 @@ python stylize.py --checkpoints models/relu5_1 models/relu4_1 models/relu3_1 mod
 7. out-path:     path of the folder where you want to save the    
                  output image.
 
-# Addition to existing model:
+# Implementing the existing model to Audio files:
 
-Here we are implementing the Style Transfer model not only to Images but also to Audio Files. So, we input a content ‘mp3’ file and a style ‘mp3’ file. 
+Here we are implementing the Style Transfer model not only to Images but also to Audio Files. So, we input a content ‘.mp3’ file and a style ‘.mp3’ file. 
 
-Modifying the static methods, preprocess(object) and postprocess(object) in WCT.py file to implement the above Universal Style Transfer model on the audio files.
-
+We modify the static methods, preprocess(object) and postprocess(object) in WCT.py file to implement the above Universal Style Transfer model on the audio files.
 
 In case you want to use your own audio files as inputs, 
 We need to first cut them to 10s length using the code: 
 
 ffmpeg -i <FILENAME.mp3> -ss 00:00:00 -t 10 <FILENAME.mp3>
 
-Using Fast Fourier Transform, we preprocess the content and style ‘mp3’ files and then we apply the Universal Style Transform model that is mentioned above to transfer style of the style ‘mp3’ file to the content ‘mp3’ file and then carry out reconstruction to obtain the output .wav file.
+Using Fast Fourier Transform, we convert the raw input audio files to spectogram. Spectrogram can be treated as [1xT] image with F number of channels. and then we apply the Universal Style Transform model that is mentioned above to transfer style of the style ‘mp3’ file to the content ‘mp3’ file and then carry out reconstruction to obtain the output .wav file using Griffin-Lim algorithm.
 
 
 
 # References:
 
- 1. Yijun Li, Chen Fang, Jimei Yang, Zhaowen Wang, Xin Lu, Ming-Hsuan Yang. Universal   Style Transfer via Feature Transforms. In 
+1. Yijun Li, Chen Fang, Jimei Yang, Zhaowen Wang, Xin Lu, Ming-Hsuan Yang. Universal   Style Transfer via Feature Transforms. In 
 2. L. A. Gatys, A. S. Ecker, and M. Bethge. Texture synthesis using convolutional neural networks. In NIPS, 2015.
 3. L. A. Gatys, A. S. Ecker, and M. Bethge. Image style transfer using convolutional neural networks. In CVPR, 2016.
 4. X. Huang and S. Belongie. Arbitrary style transfer in real-time with adaptive instance normalization. In ICCV, 2017.
 5. J. Johnson, A. Alahi, and L. Fei-Fei. Perceptual losses for real-time style transfer and super-resolution. In ECCV, 2016.
 6. C. Li and M. Wand. Precomputed real-time texture synthesis with markovian generative adversarial networks. In ECCV, 2016.
- 7. D. Ulyanov, V. Lebedev, A. Vedaldi, and V. Lempitsky. Texture networks: Feed-forward synthesis of textures and stylized images. In ICML, 2016.
+7. D. Ulyanov, V. Lebedev, A. Vedaldi, and V. Lempitsky. Texture networks: Feed-forward synthesis of textures and stylized images. In ICML, 2016.
 8. Eric Grinstein, Ngoc Duong, Alexey Ozerov, Patrick Perez, Audio Style Transfer.In 2017.
+9. D. Griffin,Jae Lim, Signal estimation from modified short-time Fourier transform.
 
 
