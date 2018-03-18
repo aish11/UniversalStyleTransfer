@@ -16,7 +16,7 @@ A single VGG encoder is set up to the deepest relu_layer which is been shared by
 
 # Samples:
 
-Content Image|Style Image|Result
+Content Image | Style Image | Result
 
 ![imageres](https://clemson.box.com/shared/static/spxeli5sw26z8r8t34ndsi9ccr1twc9n.jpg?raw=true "Title")
 
