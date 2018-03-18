@@ -19,7 +19,7 @@ A single VGG encoder is set up to the deepest relu_layer which is been shared by
 Content Image
 Style Image
 Result
-![output images](https://github.com/aish11/UniversalStyleTransfer/tree/master/outputs/image.PNG)
+![image result](https://github.com/aish11/UniversalStyleTransfer/tree/master/outputs/imageresult.JPG)
 
 
 
