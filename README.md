@@ -37,7 +37,7 @@ Content Image | Style Image | Result
 
 # Running the model:
 
-1. Setting up Tensorflow Kernel for Anaconda on Palmetto and logging in with 
+1. Setting up Tensorflow Kernel for Anaconda on Palmetto and logging in with:
 Number of chunks: 1 (Tensorflow uses 1 chunk)
 CPU cores: 24
 Memory: 62gb
