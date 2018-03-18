@@ -21,7 +21,7 @@ Style Image
 Result
 ![image result](https://github.com/aish11/UniversalStyleTransfer/tree/master/outputs/imageresult.JPG)
 
-![imageres](https://github.com/aish11/UniversalStyleTransfer/tree/master/outputs/imageresult.JPG?raw=true "Title")
+![imageres](https://clemson.box.com/s/spxeli5sw26z8r8t34ndsi9ccr1twc9n?raw=true "Title")
 
 
 
